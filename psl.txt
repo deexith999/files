@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Backup Configuration
+USERNAME="your_username"
+DATABASE="your_database"
+BACKUP_FILE="backup.sql"
+
+# Backup
+pg_dump -U $USERNAME -d $DATABASE -f $BACKUP_FILE
+
+# Restore
+# Note: Restoring will drop the existing database and recreate it using the backup file.
+# Use with caution, and make sure to backup your database before performing a restore.
+
+# Drop the existing database
+psql -U $USERNAME -c "DROP DATABASE $DATABASE;"
+
+# Create a new database
+psql -U $USERNAME -c "CREATE DATABASE $DATABASE;"
+
+# Restore the database from backup
+pg_restore -U $USERNAME -d $DATABASE $BACKUP_FILE
