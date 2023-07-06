@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uipayrollmvp
+
+   
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uipayrollmvp
+  template:
+    metadata:
+      labels:
+        app: uipayrollmvp
+    spec:
+      
+      
+      containers:
+      - name: uipayrollmvp
+        image: acrnani.azurecr.io/angular-helloworld.git:36
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uipayrollmvp  
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: uipayrollmvp
