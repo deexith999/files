@@ -1,0 +1,30 @@
+# Base image
+FROM node:latest as builder
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package.json ./app
+
+# Copy the Angular project files
+COPY . .
+
+# Install dependencies
+RUN npm install
+
+# Build the Angular app
+RUN npm run build 
+
+# Final image
+FROM nginx:latest
+
+# Copy the built files from the builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+EXPOSE 443
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
