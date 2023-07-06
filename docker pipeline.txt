@@ -5,12 +5,12 @@ steps:
   displayName: 'Build an image'
   inputs:
     azureSubscription: new
-    azureContainerRegistry: '{"loginServer":"acrnani.azurecr.io", "id" : "/subscriptions/c525fcac-c80e-415f-8eda-7941d8a77fe4/resourceGroups/aks-nani/providers/Microsoft.ContainerRegistry/registries/acrnani"}'
+    azureContainerRegistry: '{"loginServer":"acrnani.azurecr.io", "id" : "/subscriptions/c525fcac-c80e-415f-8eda-fe4/resourceGroups/aks-nani/providers/Microsoft.ContainerRegistry/registries/acrnani"}'
     dockerFile: DockerFile
 
 - task: Docker@0
   displayName: 'Push an image'
   inputs:
     azureSubscription: new
-    azureContainerRegistry: '{"loginServer":"acrnani.azurecr.io", "id" : "/subscriptions/c525fcac-c80e-415f-8eda-7941d8a77fe4/resourceGroups/aks-nani/providers/Microsoft.ContainerRegistry/registries/acrnani"}'
+    azureContainerRegistry: '{"loginServer":"acrnani.azurecr.io", "id" : "/subscriptions/c525fcac-c80e-415f-8eda-/resourceGroups/aks-nani/providers/Microsoft.ContainerRegistry/registries/acrnani"}'
     action: 'Push an image'
